@@ -1,0 +1,68 @@
+﻿@model IEnumerable<prjMvcCoreDemo.Models.CShoppingCartItem>
+
+@{
+    ViewData["Title"] = "CartView";
+}
+
+<h1>CartView</h1>
+
+<p>
+    <a asp-action="">結帳</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                序號
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.count)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.total)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @{
+        int count = 0;
+        decimal sum = 0;
+        decimal tax = 0;
+        decimal pay = 0;
+        foreach (var item in Model) {
+            count++;
+            sum += item.total;
+            tax += item.total;
+            <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.count)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+        tax = sum * 0.05M;
+        pay = sum + tax;
+    }
+    </tbody>
+</table>
+<ul class="list-group">
+    <li class="list-group-item">交易金額 : @sum.ToString("###,###,##0")元</li>
+    <li class="list-group-item">稅　　額 : @tax.ToString("###,###,##0")元</li>
+    <li class="list-group-item">應付金額 : @pay.ToString("###,###,##0")元</li>
+</ul>

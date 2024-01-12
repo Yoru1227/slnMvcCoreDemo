@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewData["Title"] = "ShowCountBySession";
+}
+
+<h1>ShowCountBySession</h1>
+
+<h2>ShowCount</h2>
+@using (Html.BeginForm())
+{
+    <p>@ViewBag.Count</p>
+    <input type="submit" name="submit" value="Count++" />
+}
