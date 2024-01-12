@@ -6,6 +6,11 @@ namespace prjMvcCoreDemo.Controllers
 {
     public class ProductController : Controller
     {
+        private IWebHostEnvironment _environment = null;
+        public ProductController(IWebHostEnvironment p)
+        {
+            _environment = p;
+        }
         public ActionResult List(CKeywordViewModel vm)
         {
             DbDemoContext db = new DbDemoContext();
@@ -34,12 +39,12 @@ namespace prjMvcCoreDemo.Controllers
             TProduct product = db.TProducts.FirstOrDefault(p => p.FId == pIn.FId);
             if (product != null)
             {
-                //if (pIn.photo != null)
-                //{
-                //    string photoName = Guid.NewGuid().ToString() + ".jpg";
-                //    product.fImagePath = photoName;
-                //    pIn.photo.SaveAs(Server.MapPath("..\\..\\images") + "\\" + photoName);
-                //}
+                if (pIn.photo != null)
+                {
+                    string photoName = Guid.NewGuid().ToString() + ".jpg";
+                    product.FImagePath = photoName;
+                    pIn.photo.CopyTo(new FileStream(_environment.WebRootPath + "/images/" + product.FImagePath, FileMode.Create));
+                }
                 product.FName = pIn.FName;
                 product.FQty = pIn.FQty;
                 product.FCost = pIn.FCost;

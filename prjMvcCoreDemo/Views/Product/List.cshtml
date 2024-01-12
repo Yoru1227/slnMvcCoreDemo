@@ -33,7 +33,7 @@
                 @Html.DisplayNameFor(model => model.FPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FImagePath)
+                圖片
             </th>
             <th></th>
         </tr>
@@ -60,7 +60,7 @@
                         @Html.DisplayFor(modelItem => item.FPrice)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FImagePath)
+                        <img src="~/images/@item.FImagePath" width="80px" height="80px" alt="" />
                     </td>
                     <td>
                         @Html.ActionLink("修改", "Edit", "Product", new { id = item.FId }, new { @class = "btn btn-primary" }) |

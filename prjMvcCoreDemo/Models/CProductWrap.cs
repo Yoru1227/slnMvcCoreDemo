@@ -47,5 +47,9 @@ namespace prjMvcCoreDemo.Models
             get { return _product.FImagePath; }
             set { _product.FImagePath = value; }
         }
+        public IFormFile photo
+        {
+            get; set;
+        }
     }
 }
