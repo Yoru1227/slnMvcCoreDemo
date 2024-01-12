@@ -4,7 +4,7 @@ using prjMvcCoreDemo.ViewModels;
 
 namespace prjMvcCoreDemo.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : SuperController
     {
         private IWebHostEnvironment _environment = null;
         public ProductController(IWebHostEnvironment p)
